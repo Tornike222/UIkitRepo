@@ -22,44 +22,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        calculateButton.tintColor = UIColor.purple
-    }
-    func resetLabels(){
-        firstTextField.text = ""
-        secondTextField.text = ""
-        resultLabel.text = ""
-    }
-    func getRedCornerOn(field: UITextField){
-        field.layer.borderColor = UIColor.red.cgColor
-        field.layer.borderWidth = 1.0
-        field.layer.cornerRadius = 5.0
-    }
-    //უმცირესი საერთო ჯერადი
-    func getUsj(firstInt: Int, secondInt: Int) -> Int{
-        let maxInt = max(firstInt,secondInt)
-        let minInt = min(firstInt,secondInt)
-        var usj = minInt
-    
-        for _ in 0...maxInt{
-            if usj % maxInt != 0 {
-                usj += minInt
-            }
-        }
-        return usj
-    }
-    //უდიდესი საერთო გამყოფი
-    func getUsg(firstInt: Int, secondInt: Int) -> Int{
-        (firstInt * secondInt) / getUsj(firstInt: firstInt, secondInt: secondInt)
+        calculateButton.tintColor = UIColor.orange
     }
     
     @IBAction func switchClicked(_ sender: UISwitch) {
         if sender.isOn {
             labelOfUsgUsj.text = "უდიდესი საერთო გამყოფი"
-            calculateButton.tintColor = UIColor.red
+            calculateButton.tintColor = UIColor.purple
             resetLabels()
         } else {
             labelOfUsgUsj.text = "უმცირესი საერთო ჯერადი"
-            calculateButton.tintColor = UIColor.purple
+            calculateButton.tintColor = UIColor.orange
             resetLabels()
         }
     }
@@ -69,7 +42,7 @@ class ViewController: UIViewController {
         let firstInt = Int(firstTextField.text!) ?? 0
         let secondInt = Int(secondTextField.text!) ?? 0
         
-        if firstInt > 0 && secondInt > 0{
+        if firstInt > 0 && secondInt > 0 {
             resultLabel.textColor = UIColor(named: "ResultColor")
             if toggleOfUsgUsj.isOn {
                 resultLabel.text = "პასუხი: \(getUsg(firstInt: firstInt, secondInt: secondInt))"
@@ -99,5 +72,32 @@ class ViewController: UIViewController {
                 self.calculateButton.isEnabled = true
             }
         }
+    }
+    func resetLabels(){
+        firstTextField.text = ""
+        secondTextField.text = ""
+        resultLabel.text = ""
+    }
+    func getRedCornerOn(field: UITextField){
+        field.layer.borderColor = UIColor.red.cgColor
+        field.layer.borderWidth = 1.0
+        field.layer.cornerRadius = 5.0
+    }
+    //უმცირესი საერთო ჯერადი
+    func getUsj(firstInt: Int, secondInt: Int) -> Int{
+        let maxInt = max(firstInt,secondInt)
+        let minInt = min(firstInt,secondInt)
+        var usj = minInt
+    
+        for _ in 0...maxInt{
+            if usj % maxInt != 0 {
+                usj += minInt
+            }
+        }
+        return usj
+    }
+    //უდიდესი საერთო გამყოფი
+    func getUsg(firstInt: Int, secondInt: Int) -> Int{
+        (firstInt * secondInt) / getUsj(firstInt: firstInt, secondInt: secondInt)
     }
 }
