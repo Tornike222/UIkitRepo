@@ -5,6 +5,8 @@
 //  Created by telkanishvili on 03.04.24.
 //
 
+//iphone15PRO ზეა გაშვებული, iOS 17 ით
+
 import UIKit
 
 class ViewController: UIViewController {
